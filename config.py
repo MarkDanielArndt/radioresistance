@@ -15,7 +15,9 @@ args = parser.parse_args()
 cluster = args.cluster
 
 if cluster:
+
     directory_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "big_dataset"
+    image_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "plots"
 else:
     directory_path = pathlib.Path.cwd() / 'data' / 'cats_dogs' / 'big_dataset'
 

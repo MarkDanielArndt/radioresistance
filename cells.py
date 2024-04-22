@@ -41,7 +41,7 @@ if __name__ == "__main__":
     fig = plt.figure()
     plt.plot(train_loss)
     plt.plot(val_loss)
-    fig.savefig()
+    fig.savefig(config.image_path / "plot")
     
 # images, label = next(iter(train_loader))
 
