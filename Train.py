@@ -66,7 +66,7 @@ class Trainer:
                 inputs, labels = inputs.to(self.device), labels.to(self.device)
                 outputs = self.model(inputs)
                 loss = self.criterion(outputs, labels)
-                prediction = [softmax(x) for x in (np.array(outputs))]
+                prediction = [softmax(x) for x in (np.array(outputs.cpu()))]
                 prediction = [np.argmax(x) for x in prediction]
                 accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels)))
                 val_loss += loss.item() * inputs.size(0)
