@@ -68,7 +68,7 @@ class Trainer:
                 loss = self.criterion(outputs, labels)
                 prediction = [softmax(x) for x in (np.array(outputs.cpu()))]
                 prediction = [np.argmax(x) for x in prediction]
-                accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels)))
+                accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels.cpu())))
                 val_loss += loss.item() * inputs.size(0)
             accuracy_array = np.array(accuracy_array)
             accuracy = 1 - np.sum(accuracy_array)/len(accuracy_array)
