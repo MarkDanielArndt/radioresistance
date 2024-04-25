@@ -13,6 +13,7 @@ import torch.optim as optim
 from Train import Trainer
 import ResNet
 import config
+from Tester import Tester
 #from mnist_dataset import test_loader, train_loader
 
 
@@ -39,13 +40,22 @@ if __name__ == "__main__":
     # Train the model
     train_loss, val_loss, acurray = trainer.train(config.num_epochs)
 
+    tester = Tester(model, test_loader, config.device)
+
+    acurray, F1 = tester()
+
     # Plots
     fig = plt.figure()
     plt.plot(train_loss, label="train_loss")
     plt.plot(val_loss, label="val_loss")
-    plt.plot(acurray, label="accuracy")
     plt.legend()
-    fig.savefig(config.image_path / "plot")
+    fig.savefig(config.image_path / "loss")
+
+    fig = plt.figure()
+    plt.plot(acurray, label="accuracy")
+    plt.plot(F1, label="F1")
+    plt.legend()
+    fig.savefig(config.image_path / "accuracy")
     
 # images, label = next(iter(train_loader))
 
