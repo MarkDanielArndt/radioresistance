@@ -11,7 +11,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 parser = argparse.ArgumentParser(description="Options for the run.")
 
 parser.add_argument("--cluster", default=False, action="store_true")
-parser.add_argument("--num_epochs", required=True, default=30)
+parser.add_argument("--num_epochs", required=False, default=2)
 args = parser.parse_args()
 cluster = args.cluster
 num_epochs = int(args.num_epochs)
@@ -21,7 +21,8 @@ if cluster:
     directory_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "big_dataset"
     image_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "plots"
 else:
-    directory_path = pathlib.Path.cwd() / 'data' / 'cats_dogs' / 'big_dataset'
+    directory_path = pathlib.Path.cwd() / 'data' / 'cats_dogs' / 'test'
+    image_path = pathlib.Path.cwd() / 'data' / 'plots' / 'plots' 
 
 
 

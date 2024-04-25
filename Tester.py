@@ -6,9 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import config
 from tqdm import tqdm
-from torchmetrics.classification import BinaryF1Score
-
-metric = BinaryF1Score()
+from sklearn.metrics import f1_score
 
 def softmax(x):
     exp_x = np.exp(x - np.max(x))  # Subtracting the maximum value for numerical stability
@@ -20,12 +18,12 @@ class Tester:
         self.test_loader = test_loader
         self.device = device
 
-    def train(self):
+    def test(self):
         
         
         accuracy, F1 = self.evaluate()
 
-        print(f"Test accuracy: {accuracy:.4f}")
+        print(f"Test accuracy: {accuracy:.4f}, Test F1: {F1:.4f}")
         return accuracy, F1
 
 
@@ -43,7 +41,7 @@ class Tester:
                 prediction = [softmax(x) for x in (np.array(outputs.cpu()))]
                 prediction = [np.argmax(x) for x in prediction]
                 accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels.cpu())))
-                F1 = metric(prediction, labels.cpu())
+                F1 = f1_score(np.array(labels.cpu()), prediction)
             accuracy_array = np.array(accuracy_array)
             accuracy = 1 - np.sum(accuracy_array)/len(accuracy_array)
 

@@ -1,4 +1,4 @@
-from Data_Loader import CustomImageDataset
+from Data_Loader import CustomImageDataset, list_children
 from torch.utils.data import DataLoader, Subset
 import pathlib
 import torchvision.transforms as transforms
@@ -14,6 +14,7 @@ from Train import Trainer
 import ResNet
 import config
 from Tester import Tester
+import Plotter
 #from mnist_dataset import test_loader, train_loader
 
 
@@ -42,30 +43,28 @@ if __name__ == "__main__":
 
     tester = Tester(model, test_loader, config.device)
 
-    acurray, F1 = tester()
+    accuracy, F1 = tester.test()
 
     # Plots
-    fig = plt.figure()
-    plt.plot(train_loss, label="train_loss")
-    plt.plot(val_loss, label="val_loss")
-    plt.legend()
-    fig.savefig(config.image_path / "loss")
 
-    fig = plt.figure()
-    plt.plot(acurray, label="accuracy")
-    plt.plot(F1, label="F1")
-    plt.legend()
-    fig.savefig(config.image_path / "accuracy")
+    Plotter.plotter(train_loss, val_loss, accuracy, F1)
+
+
+
+
+    # images, label = next(iter(train_loader))
+    # fig, axes = plt.subplots(4, 8, figsize=(10, 20))
+    # names = list_children(config.directory_path)
+    # for i in range(4):
+    #     for j in range(8):
+    #         index = i * 8 + j
+    #         axes[i, j].imshow(images[index])
+    #         axes[i, j].set_title(names[int(label[index])])
+    #         axes[i, j].axis('off')
+    # plt.show()
     
-# images, label = next(iter(train_loader))
 
-# fig, axes = plt.subplots(4, 8, figsize=(10, 20))
-# for i in range(4):
-#     for j in range(8):
-#         index = i * 8 + j
-#         axes[i, j].imshow(images[index])
-#         axes[i, j].set_title(list(lookup_dict)[int(label[index])])
-#         axes[i, j].axis('off')
-# plt.show()
+
+
 
 #print(my_dataset[0])
