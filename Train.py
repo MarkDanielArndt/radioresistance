@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import config
 from tqdm import tqdm
 from sklearn.metrics import f1_score
+import utils
 
 
 def softmax(x):
@@ -56,6 +57,10 @@ class Trainer:
             train_loss = running_loss / len(self.train_loader.dataset)
             print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}")
             train_loss_array.append(train_loss)
+            
+            if (epoch % 10 == 0):
+                utils.save_checkpoint(self.model, self.optimizer, config.checkpoint_path / ("checkpoint_" + str(epoch)))
+
             loop.set_postfix(Epoche=epoch)
         return train_loss_array, val_loss_array, accuracy_array, F1_array
 

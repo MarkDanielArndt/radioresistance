@@ -15,15 +15,9 @@ import ResNet
 import config
 from Tester import Tester
 import Plotter
-#from mnist_dataset import test_loader, train_loader
 
 
 if __name__ == "__main__":
-    # Define hyperparameters
-    
-
-    #batch_size = 32
-
     # Create model
     model = config.model
 
@@ -31,7 +25,7 @@ if __name__ == "__main__":
     criterion = config.critererion
     optimizer = optim.Adam(model.parameters(), lr=config.learning_rate)
 
-    # Dummy data loaders (replace with your own datasets)
+    # Data loaders
     train_loader = train_loader
     val_loader = test_loader
 
@@ -40,15 +34,14 @@ if __name__ == "__main__":
 
     # Train the model
     train_loss, val_loss, accuracy, F1 = trainer.train(config.num_epochs)
-
+    
+    # Create tester
     tester = Tester(model, test_loader, config.device)
 
-    
-
-    # Plots
-
+    # Create plots
     Plotter.plotter(train_loss, val_loss, accuracy, F1)
 
+    # Create meatrics from test dataset
     accuracy, F1 = tester.test()
 
 
@@ -62,9 +55,3 @@ if __name__ == "__main__":
     #         axes[i, j].set_title(names[int(label[index])])
     #         axes[i, j].axis('off')
     # plt.show()
-    
-
-
-
-
-#print(my_dataset[0])
