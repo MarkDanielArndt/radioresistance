@@ -38,6 +38,8 @@ if __name__ == "__main__":
 
     # Train the model
     train_loss, val_loss = trainer.train(config.num_epochs)
+
+    # Plots
     fig = plt.figure()
     plt.plot(train_loss)
     plt.plot(val_loss)

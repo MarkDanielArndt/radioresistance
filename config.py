@@ -11,8 +11,11 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 parser = argparse.ArgumentParser(description="Options for the run.")
 
 parser.add_argument("--cluster", default=False, action="store_true")
+parser.add_argument("--num_epochs", required=True, default=30)
 args = parser.parse_args()
 cluster = args.cluster
+num_epochs = args.num_epochs
+
 
 if cluster:
     directory_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "big_dataset"
@@ -26,7 +29,7 @@ categories = 2
 model = ResNet.ResNet101(categories)
 critererion = nn.CrossEntropyLoss()
 
-num_epochs = 30
+
 learning_rate = 0.001
 batchsize = 32
 
