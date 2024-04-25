@@ -23,9 +23,11 @@ class Trainer:
     def train(self, num_epochs):
         train_loss_array = []
         val_loss_array = []
+        accuracy_arry = []
         for epoch in range(num_epochs):
             val_loss, accuracy = self.evaluate(epoch)
             val_loss_array.append(val_loss)
+            accuracy_arry.append(accuracy)
             print(f"Validation Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
 
             self.model.train()
@@ -51,7 +53,7 @@ class Trainer:
             print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}")
             train_loss_array.append(train_loss)
             loop.set_postfix(Epoche=epoch)
-        return train_loss_array, val_loss_array
+        return train_loss_array, val_loss_array, accuracy_arry
 
 
 

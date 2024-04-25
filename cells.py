@@ -37,12 +37,14 @@ if __name__ == "__main__":
     trainer = Trainer(model, train_loader, val_loader, criterion, optimizer, config.device)
 
     # Train the model
-    train_loss, val_loss = trainer.train(config.num_epochs)
+    train_loss, val_loss, acurray = trainer.train(config.num_epochs)
 
     # Plots
     fig = plt.figure()
-    plt.plot(train_loss)
-    plt.plot(val_loss)
+    plt.plot(train_loss, label="train_loss")
+    plt.plot(val_loss, label="val_loss")
+    plt.plot(acurray, label="accuracy")
+    plt.legend()
     fig.savefig(config.image_path / "plot")
     
 # images, label = next(iter(train_loader))
