@@ -39,17 +39,17 @@ if __name__ == "__main__":
     trainer = Trainer(model, train_loader, val_loader, criterion, optimizer, config.device)
 
     # Train the model
-    train_loss, val_loss, acurray = trainer.train(config.num_epochs)
+    train_loss, val_loss, accuracy, F1 = trainer.train(config.num_epochs)
 
     tester = Tester(model, test_loader, config.device)
 
-    accuracy, F1 = tester.test()
+    
 
     # Plots
 
     Plotter.plotter(train_loss, val_loss, accuracy, F1)
 
-
+    accuracy, F1 = tester.test()
 
 
     # images, label = next(iter(train_loader))

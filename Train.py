@@ -6,6 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import config
 from tqdm import tqdm
+from sklearn.metrics import f1_score
+
 
 def softmax(x):
     exp_x = np.exp(x - np.max(x))  # Subtracting the maximum value for numerical stability
@@ -23,11 +25,13 @@ class Trainer:
     def train(self, num_epochs):
         train_loss_array = []
         val_loss_array = []
-        accuracy_arry = []
+        accuracy_array = []
+        F1_array = []
         for epoch in range(num_epochs):
-            val_loss, accuracy = self.evaluate(epoch)
+            val_loss, accuracy, F1 = self.evaluate(epoch)
             val_loss_array.append(val_loss)
-            accuracy_arry.append(accuracy)
+            accuracy_array.append(accuracy)
+            F1_array.append(F1)
             print(f"Validation Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
 
             self.model.train()
@@ -53,7 +57,7 @@ class Trainer:
             print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}")
             train_loss_array.append(train_loss)
             loop.set_postfix(Epoche=epoch)
-        return train_loss_array, val_loss_array, accuracy_arry
+        return train_loss_array, val_loss_array, accuracy_array, F1_array
 
 
 
@@ -62,6 +66,7 @@ class Trainer:
         self.model.eval()
         val_loss = 0.0
         accuracy_array = np.array([])
+        F1_array = np.array([])
 
         with torch.no_grad():
             for inputs, labels in self.val_loader:
@@ -72,6 +77,9 @@ class Trainer:
                 prediction = [np.argmax(x) for x in prediction]
                 accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels.cpu())))
                 val_loss += loss.item() * inputs.size(0)
+                F1 = f1_score(np.array(labels.cpu()), prediction)
+
+            F1_array = np.array(F1_array)
             accuracy_array = np.array(accuracy_array)
             accuracy = 1 - np.sum(accuracy_array)/len(accuracy_array)
             # for i in range(6):
@@ -84,4 +92,4 @@ class Trainer:
             #   plt.yticks([])
 
             # plt.show()
-        return val_loss / len(self.val_loader.dataset), accuracy
+        return val_loss / len(self.val_loader.dataset), accuracy, F1
