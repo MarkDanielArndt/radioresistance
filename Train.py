@@ -58,7 +58,7 @@ class Trainer:
             print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}")
             train_loss_array.append(train_loss)
             
-            if (epoch % 10 == 0):
+            if (epoch % 10 == 0 and config.save_model):
                 utils.save_checkpoint(self.model, self.optimizer, config.checkpoint_path / ("checkpoint_" + str(epoch)))
 
             loop.set_postfix(Epoche=epoch)
@@ -80,13 +80,21 @@ class Trainer:
                 loss = self.criterion(outputs, labels)
                 prediction = [softmax(x) for x in (np.array(outputs.cpu()))]
                 prediction = [np.argmax(x) for x in prediction]
-                accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels.cpu())))
+
+                accuracy_array = []
+                for i in range(len(prediction)):
+                    if prediction[i] == np.array(labels.cpu())[i]:
+                        x = 1
+                    else:
+                        x = 0
+                    accuracy_array.append(x)
+
                 val_loss += loss.item() * inputs.size(0)
-                F1 = f1_score(np.array(labels.cpu()), prediction)
+                F1 = f1_score(np.array(labels.cpu()), prediction, average=None)
 
             F1_array = np.array(F1_array)
             accuracy_array = np.array(accuracy_array)
-            accuracy = 1 - np.sum(accuracy_array)/len(accuracy_array)
+            accuracy = np.sum(accuracy_array)/len(accuracy_array)
             # for i in range(6):
             #   plt.subplot(2,3,i+1)
             #   plt.tight_layout()

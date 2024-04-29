@@ -11,26 +11,31 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 parser = argparse.ArgumentParser(description="Options for the run.")
 
 parser.add_argument("--cluster", default=False, action="store_true")
-parser.add_argument("--num_epochs", required=False, default=11)
+parser.add_argument("--num_epochs", required=False, default=1)
+parser.add_argument("--load_model", required=False, action="store_true", default=False)
+parser.add_argument("--save_model", required=False, action="store_true", default=True)
+
 args = parser.parse_args()
 cluster = args.cluster
+load_model = args.load_model
+save_model = args.save_model
 num_epochs = int(args.num_epochs)
 
 
 if cluster:
-    directory_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "big_dataset"
+    directory_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "Micro_Organism"
     image_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "plots"
-    checkpoint_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "checkpoints" / "cats_dogs"
+    checkpoint_path = pathlib.Path("/omics") / "groups" / "OE0471" / "internal" / "m623t" / "checkpoints" / "Micro_Organism"
     
 
 else:
-    directory_path = pathlib.Path.cwd() / 'data' / 'cats_dogs' / 'test'
+    directory_path = pathlib.Path.cwd() / 'data' / 'Micro_Organism' # / 'data' / 'cats_dogs' / 'test'
     image_path = pathlib.Path.cwd() / 'data' / 'plots' / 'plots' 
-    checkpoint_path = pathlib.Path.cwd() / 'data' / 'plots' / 'plots' 
+    checkpoint_path = pathlib.Path.cwd() / 'data' / 'checkpoints' / 'Micro_Organism' 
 
 
 
-categories = 2
+categories = 8
 model = ResNet.ResNet101(categories)
 critererion = nn.CrossEntropyLoss()
 

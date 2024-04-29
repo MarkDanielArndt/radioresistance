@@ -23,7 +23,7 @@ class Tester:
         
         accuracy, F1 = self.evaluate()
 
-        print(f"Test accuracy: {accuracy:.4f}, Test F1: {F1:.4f}")
+        print(f"Test accuracy: {accuracy:.4f}, Test F1: {np.mean(F1):.4f}")
         return accuracy, F1
 
 
@@ -40,9 +40,15 @@ class Tester:
                 outputs = self.model(inputs)
                 prediction = [softmax(x) for x in (np.array(outputs.cpu()))]
                 prediction = [np.argmax(x) for x in prediction]
-                accuracy_array = np.append(accuracy_array,np.abs(prediction - np.array(labels.cpu())))
-                F1 = f1_score(np.array(labels.cpu()), prediction)
-            accuracy_array = np.array(accuracy_array)
-            accuracy = 1 - np.sum(accuracy_array)/len(accuracy_array)
+                accuracy_array = []
+                for i in range(len(prediction)):
+                    if prediction[i] == np.array(labels.cpu())[i]:
+                        x = 1
+                    else:
+                        x = 0
+                    accuracy_array.append(x)
+                    F1 = f1_score(np.array(labels.cpu()), prediction, average=None)
+
+            accuracy = np.sum(accuracy_array)/len(accuracy_array)
 
         return accuracy, F1

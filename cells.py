@@ -15,6 +15,7 @@ import ResNet
 import config
 from Tester import Tester
 import Plotter
+import utils
 
 
 if __name__ == "__main__":
@@ -25,6 +26,10 @@ if __name__ == "__main__":
     criterion = config.critererion
     optimizer = optim.Adam(model.parameters(), lr=config.learning_rate)
 
+    if config.load_model:
+        utils.load_checkpoint(checkpoint_file=config.checkpoint_path / "checkpoint_30", 
+                              model=model, optimizer=optimizer, lr=config.learning_rate)
+        
     # Data loaders
     train_loader = train_loader
     val_loader = test_loader
@@ -40,18 +45,10 @@ if __name__ == "__main__":
 
     # Create plots
     Plotter.plotter(train_loss, val_loss, accuracy, F1)
-
+    
+    Plotter.test_plot(model, test_loader)
     # Create meatrics from test dataset
     accuracy, F1 = tester.test()
 
 
-    # images, label = next(iter(train_loader))
-    # fig, axes = plt.subplots(4, 8, figsize=(10, 20))
-    # names = list_children(config.directory_path)
-    # for i in range(4):
-    #     for j in range(8):
-    #         index = i * 8 + j
-    #         axes[i, j].imshow(images[index])
-    #         axes[i, j].set_title(names[int(label[index])])
-    #         axes[i, j].axis('off')
-    # plt.show()
+    
