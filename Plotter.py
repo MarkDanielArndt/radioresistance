@@ -42,6 +42,7 @@ def show_img(img_array):
     return(img_array)
 
 def test_plot(model, test_loader):
+    model = model.to(config.device)
     with torch.no_grad():
         images, label = next(iter(test_loader))
         outputs = model(images)

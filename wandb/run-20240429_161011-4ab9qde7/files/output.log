@@ -1,0 +1,93 @@
+
+Validation Loss: 2.0732, Accuracy: 0.2174
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 94%|██████████████████████████████████████████████████████████████████    | 17/18 [01:07<00:03,  3.42s/it]
+Epoch [1/11], Train Loss: 2.7686
+
+100%|██████████████████████████████████████████████████████████████████████| 18/18 [01:08<00:00,  3.81s/it]
+Validation Loss: 2.0880, Accuracy: 0.2609
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|██████████████████████████████████████████████████████████████████████| 18/18 [00:54<00:00,  3.01s/it]
+Epoch [2/11], Train Loss: 2.2549
+Traceback (most recent call last):
+  File "c:\Users\Mark\Documents\radioresistance\cells.py", line 42, in <module>
+    train_loss, val_loss, accuracy, F1 = trainer.train(config.num_epochs)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Mark\Documents\radioresistance\Train.py", line 32, in train
+    val_loss, accuracy, F1 = self.evaluate(epoch)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Mark\Documents\radioresistance\Train.py", line 83, in evaluate
+    outputs = self.model(inputs)
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Mark\Documents\radioresistance\ResNet.py", line 98, in forward
+    x = self.layer3(x)
+        ^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\container.py", line 217, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Mark\Documents\radioresistance\ResNet.py", line 28, in forward
+    x = self.relu(self.batch_norm2(self.conv2(x)))
+                                   ^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\nn\modules\conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

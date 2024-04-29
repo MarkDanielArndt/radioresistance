@@ -7,6 +7,7 @@ import argparse
 import wandb
 
 random.seed(1)
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 parser = argparse.ArgumentParser(description="Options for the run.")
