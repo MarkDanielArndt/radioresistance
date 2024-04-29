@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description="Options for the run.")
 
 parser.add_argument("--cluster", default=False, action="store_true")
 parser.add_argument("--num_epochs", required=False, default=11)
-parser.add_argument("--ckeck_steps", required=False, default=10)
+parser.add_argument("--check_steps", required=False, default=10)
 parser.add_argument("--load_model", required=False, action="store_true", default=False)
 parser.add_argument("--save_model", required=False, action="store_true", default=True)
 

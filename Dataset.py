@@ -12,7 +12,7 @@ transform = transforms.Compose([
     transforms.Resize((128, 128)),
     #transforms.RandomRotation(degrees=15),
     transforms.RandomHorizontalFlip(),
-    #transforms.RandomVerticalFlip(),
+    transforms.RandomVerticalFlip(),
     #transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
     transforms.ToTensor(),
     transforms.Normalize(mean=config.mean, std=config.std),
