@@ -57,12 +57,12 @@ class Trainer:
                 running_loss += loss.item() * inputs.size(0)
 
             train_loss = running_loss / len(self.train_loader.dataset)
-            
+
             wandb.log({"train_loss": val_loss})
             print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}")
             train_loss_array.append(train_loss)
             
-            if (epoch % 10 == 0 and config.save_model):
+            if (epoch % config.check_steps == 0 and config.save_model):
                 utils.save_checkpoint(self.model, self.optimizer, config.checkpoint_path / ("checkpoint_" + str(epoch)))
 
             loop.set_postfix(Epoche=epoch)
