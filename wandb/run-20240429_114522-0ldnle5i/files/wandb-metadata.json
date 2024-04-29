@@ -1,0 +1,45 @@
+{
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.11.9",
+    "heartbeatAt": "2024-04-29T09:45:23.336677",
+    "startedAt": "2024-04-29T09:45:22.157187",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "c:\\Users\\Mark\\Documents\\radioresistance\\cells.py",
+    "codePathLocal": "cells.py",
+    "codePath": "cells.py",
+    "git": {
+        "remote": "git@github.com:MarkDanielArndt/radioresistance.git",
+        "commit": "209472cbdd5ba2fc79afc6d08fe3c824c6d9845f"
+    },
+    "email": "markdaniel.arndt@gmail.com",
+    "root": "C:/Users/Mark/Documents/radioresistance",
+    "host": "Mark_PC",
+    "username": "Mark",
+    "executable": "C:\\Users\\Mark\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+    "cpu_count": 14,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 2400.0,
+        "min": 0.0,
+        "max": 2400.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2400.0,
+            "min": 0.0,
+            "max": 2400.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 951.6455039978027,
+            "used": 255.68754959106445
+        }
+    },
+    "memory": {
+        "total": 31.52911376953125
+    }
+}

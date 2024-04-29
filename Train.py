@@ -8,7 +8,7 @@ import config
 from tqdm import tqdm
 from sklearn.metrics import f1_score
 import utils
-
+import wandb
 
 def softmax(x):
     exp_x = np.exp(x - np.max(x))  # Subtracting the maximum value for numerical stability
@@ -33,6 +33,8 @@ class Trainer:
             val_loss_array.append(val_loss)
             accuracy_array.append(accuracy)
             F1_array.append(F1)
+
+            wandb.log({"acc": accuracy, "val_loss": val_loss})
             print(f"Validation Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
 
             self.model.train()
@@ -55,6 +57,8 @@ class Trainer:
                 running_loss += loss.item() * inputs.size(0)
 
             train_loss = running_loss / len(self.train_loader.dataset)
+            
+            wandb.log({"train_loss": val_loss})
             print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}")
             train_loss_array.append(train_loss)
             

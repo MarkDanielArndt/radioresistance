@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import config
 from tqdm import tqdm
 from sklearn.metrics import f1_score
+import wandb
 
 def softmax(x):
     exp_x = np.exp(x - np.max(x))  # Subtracting the maximum value for numerical stability
@@ -24,6 +25,7 @@ class Tester:
         accuracy, F1 = self.evaluate()
 
         print(f"Test accuracy: {accuracy:.4f}, Test F1: {np.mean(F1):.4f}")
+        wandb.log({"Test accuracy": accuracy, "Test F1:": np.mean(F1)})
         return accuracy, F1
 
 

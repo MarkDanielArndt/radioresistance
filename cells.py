@@ -16,6 +16,7 @@ import config
 from Tester import Tester
 import Plotter
 import utils
+import wandb
 
 
 if __name__ == "__main__":
@@ -49,6 +50,8 @@ if __name__ == "__main__":
     Plotter.test_plot(model, test_loader)
     # Create meatrics from test dataset
     accuracy, F1 = tester.test()
+
+    wandb.finish()
 
 
     

@@ -1,0 +1,109 @@
+
+Validation Loss: 2.0791, Accuracy: 0.2174
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 89%|██████████████████████████████████████████████████████████████▏       | 16/18 [00:58<00:07,  3.60s/it]
+Epoch [1/11], Train Loss: 2.9125
+
+100%|██████████████████████████████████████████████████████████████████████| 18/18 [01:02<00:00,  3.50s/it]
+Validation Loss: 2.0651, Accuracy: 0.2174
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 89%|██████████████████████████████████████████████████████████████▏       | 16/18 [00:53<00:06,  3.33s/it]
+
+100%|██████████████████████████████████████████████████████████████████████| 18/18 [00:57<00:00,  3.19s/it]
+Validation Loss: 4.1187, Accuracy: 0.3043
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 94%|██████████████████████████████████████████████████████████████████    | 17/18 [01:13<00:05,  5.05s/it]
+
+100%|██████████████████████████████████████████████████████████████████████| 18/18 [01:15<00:00,  4.19s/it]
+Validation Loss: 3.3261, Accuracy: 0.3043
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 94%|██████████████████████████████████████████████████████████████████    | 17/18 [00:57<00:02,  2.70s/it]
+
+100%|██████████████████████████████████████████████████████████████████████| 18/18 [00:58<00:00,  3.26s/it]
+Validation Loss: 1.9262, Accuracy: 0.3043
+
+
+
+
+
+
+
+
+
+
+
+
+ 67%|██████████████████████████████████████████████▋                       | 12/18 [00:36<00:18,  3.04s/it]
+Traceback (most recent call last):
+  File "c:\Users\Mark\Documents\radioresistance\cells.py", line 42, in <module>
+    train_loss, val_loss, accuracy, F1 = trainer.train(config.num_epochs)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Mark\Documents\radioresistance\Train.py", line 54, in train
+    loss.backward()
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "C:\Users\Mark\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\autograd\__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
